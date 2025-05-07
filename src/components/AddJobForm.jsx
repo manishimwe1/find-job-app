@@ -24,7 +24,7 @@ const formSchema = z.object({
 })
 
 
-const AddJobForm = () => {
+const AddJobForm = ({setOpenModel}) => {
   // 1. Define your form.
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -48,7 +48,8 @@ const AddJobForm = () => {
     };
   
     const response = await AddItem(itemData);
-    console.log(response);
+    form.reset(); // Reset the form after submission
+    setOpenModel(false); // Close the modal after submission
   };
   return (
     <Form {...form}>
